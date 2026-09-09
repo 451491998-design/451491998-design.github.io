@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>江西省A级旅游景区交互地图</title>
+  <meta name="description" content="581个江西省A级旅游景区的搜索、筛选与地图浏览工具" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">江西省文化旅游数据</p>
+        <h1>江西省A级旅游景区交互地图</h1>
+      </div>
+      <div class="summary" aria-label="数据摘要">
+        <div><strong id="totalCount">581</strong><span>景区总数</span></div>
+        <div><strong id="visibleCount">581</strong><span>当前显示</span></div>
+        <div><strong>11</strong><span>设区市</span></div>
+        <a class="download-map" href="assets/江西省A级景区平面地图.png" download>下载平面图</a>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <aside class="filters" aria-label="筛选条件">
+        <div class="panel-title"><span>筛选景区</span><button id="resetFilters">重置</button></div>
+        <label class="field"><span>搜索名称</span><input id="searchInput" type="search" placeholder="输入景区名称或区县" /></label>
+        <label class="field"><span>设区市</span><select id="cityFilter"><option value="">全部城市</option></select></label>
+        <label class="field"><span>景区等级</span><select id="levelFilter"><option value="">全部等级</option></select></label>
+        <label class="field"><span>旅游资源类型</span><select id="typeFilter"><option value="">全部类型</option></select></label>
+        <div class="legend-block">
+          <span class="legend-title">点位颜色</span>
+          <div class="legend"><i class="l5"></i>5A <i class="l4"></i>4A <i class="l3"></i>3A <i class="l2"></i>2A</div>
+        </div>
+        <div class="city-ranking" id="cityRanking"></div>
+        <p class="data-note">点位按区县归属分散展示，用于承载全部581条信息，不代表精确经纬度。</p>
+      </aside>
+
+      <section class="map-card" aria-label="江西省景区地图">
+        <div class="map-tools">
+          <button id="zoomIn" aria-label="放大">＋</button>
+          <button id="zoomOut" aria-label="缩小">－</button>
+          <button id="resetView">全省</button>
+        </div>
+        <svg id="map" role="img" aria-label="江西省A级景区点位地图" viewBox="0 0 900 980">
+          <g id="viewport"><g id="regions"></g><g id="points"></g><g id="labels"></g></g>
+        </svg>
+        <div id="tooltip" class="tooltip" hidden></div>
+      </section>
+
+      <aside class="results" aria-label="景区列表">
+        <div class="panel-title"><span>景区列表</span><span id="resultCount" class="badge">581</span></div>
+        <div id="selectedDetail" class="selected-detail empty">点击地图点位或列表查看完整信息</div>
+        <div id="resultList" class="result-list"></div>
+      </aside>
+    </section>
+  </main>
+  <script src="assets/data-inline.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
